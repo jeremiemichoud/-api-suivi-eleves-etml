@@ -1,0 +1,23 @@
+info:
+  name: Update a teacher
+  type: http
+  seq: 1
+
+http:
+  method: PUT
+  url: http://localhost:3333/teachers/1
+  body:
+    type: json
+    data: |-
+      {
+        "name": "François",
+        "firstname": "jean",
+        "email":"jean-françois@loli.com"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
