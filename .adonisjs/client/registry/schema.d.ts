@@ -155,13 +155,13 @@ export interface Registry {
     methods: ["POST"]
     pattern: '/ClassGroup'
     types: {
-      body: {}
+      body: ExtractBody<InferInput<(typeof import('#validators/class_group').ClassGroupValidator)>>
       paramsTuple: []
       params: {}
-      query: {}
+      query: ExtractQuery<InferInput<(typeof import('#validators/class_group').ClassGroupValidator)>>
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/class_groups_controller').default['store']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/class_groups_controller').default['store']>>>
-      rawResponse: ExtractRawResponse<Awaited<ReturnType<import('#controllers/class_groups_controller').default['store']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/class_groups_controller').default['store']>>> | { status: 422; response: { errors: SimpleError[] } }
+      rawResponse: ExtractRawResponse<Awaited<ReturnType<import('#controllers/class_groups_controller').default['store']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
   'class_group.show': {
@@ -181,13 +181,13 @@ export interface Registry {
     methods: ["PUT","PATCH"]
     pattern: '/ClassGroup/:id'
     types: {
-      body: {}
+      body: ExtractBody<InferInput<(typeof import('#validators/class_group').ClassGroupValidator)>>
       paramsTuple: [ParamValue]
       params: { id: ParamValue }
-      query: {}
+      query: ExtractQuery<InferInput<(typeof import('#validators/class_group').ClassGroupValidator)>>
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/class_groups_controller').default['update']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/class_groups_controller').default['update']>>>
-      rawResponse: ExtractRawResponse<Awaited<ReturnType<import('#controllers/class_groups_controller').default['update']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/class_groups_controller').default['update']>>> | { status: 422; response: { errors: SimpleError[] } }
+      rawResponse: ExtractRawResponse<Awaited<ReturnType<import('#controllers/class_groups_controller').default['update']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
   'class_group.destroy': {

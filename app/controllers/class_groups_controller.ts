@@ -7,16 +7,16 @@ export default class ClassGroupsController {
    * Display a list of resource
    */
   async index({}: HttpContext) {
-    return await ClassGroup.query().orderBy('name')
+    return await ClassGroup.query().preload('teacher').orderBy('name')
   }
 
   /**
    * Handle form submission for the create action
    */
   async store({ request, response }: HttpContext) {
-    const { name } = await request.validateUsing(ClassGroupValidator)
+    const { name, teacherId } = await request.validateUsing(ClassGroupValidator)
 
-    const classGroup = ClassGroup.create({ name })
+    const classGroup = await ClassGroup.create({ name, teacherId })
 
     return response.created(classGroup)
   }
@@ -25,7 +25,10 @@ export default class ClassGroupsController {
    * Show individual record
    */
   async show({ params, response }: HttpContext) {
-    const classGroup = await ClassGroup.findOrFail(params.id)
+    const classGroup = await ClassGroup.query()
+      .preload('teacher')
+      .where('id', params.id)
+      .firstOrFail()
     return response.ok(classGroup)
   }
 
