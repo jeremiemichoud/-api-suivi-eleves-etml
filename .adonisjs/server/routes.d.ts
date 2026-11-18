@@ -4,6 +4,10 @@ type ParamValue = string | number | bigint | boolean
 
 export type ScannedRoutes = {
   ALL: {
+    'auth.new_account.store': { paramsTuple?: []; params?: {} }
+    'auth.access_tokens.store': { paramsTuple?: []; params?: {} }
+    'profile.profile.show': { paramsTuple?: []; params?: {} }
+    'profile.access_tokens.destroy': { paramsTuple?: []; params?: {} }
     'students.index': { paramsTuple?: []; params?: {} }
     'students.store': { paramsTuple?: []; params?: {} }
     'students.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
@@ -25,7 +29,17 @@ export type ScannedRoutes = {
     'students.comments.update': { paramsTuple: [ParamValue,ParamValue]; params: {'student_id': ParamValue,'id': ParamValue} }
     'students.comments.destroy': { paramsTuple: [ParamValue,ParamValue]; params: {'student_id': ParamValue,'id': ParamValue} }
   }
+  POST: {
+    'auth.new_account.store': { paramsTuple?: []; params?: {} }
+    'auth.access_tokens.store': { paramsTuple?: []; params?: {} }
+    'profile.access_tokens.destroy': { paramsTuple?: []; params?: {} }
+    'students.store': { paramsTuple?: []; params?: {} }
+    'teachers.store': { paramsTuple?: []; params?: {} }
+    'class_group.store': { paramsTuple?: []; params?: {} }
+    'students.comments.store': { paramsTuple: [ParamValue]; params: {'student_id': ParamValue} }
+  }
   GET: {
+    'profile.profile.show': { paramsTuple?: []; params?: {} }
     'students.index': { paramsTuple?: []; params?: {} }
     'students.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'teachers.index': { paramsTuple?: []; params?: {} }
@@ -36,6 +50,7 @@ export type ScannedRoutes = {
     'students.comments.show': { paramsTuple: [ParamValue,ParamValue]; params: {'student_id': ParamValue,'id': ParamValue} }
   }
   HEAD: {
+    'profile.profile.show': { paramsTuple?: []; params?: {} }
     'students.index': { paramsTuple?: []; params?: {} }
     'students.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'teachers.index': { paramsTuple?: []; params?: {} }
@@ -44,12 +59,6 @@ export type ScannedRoutes = {
     'class_group.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'students.comments.index': { paramsTuple: [ParamValue]; params: {'student_id': ParamValue} }
     'students.comments.show': { paramsTuple: [ParamValue,ParamValue]; params: {'student_id': ParamValue,'id': ParamValue} }
-  }
-  POST: {
-    'students.store': { paramsTuple?: []; params?: {} }
-    'teachers.store': { paramsTuple?: []; params?: {} }
-    'class_group.store': { paramsTuple?: []; params?: {} }
-    'students.comments.store': { paramsTuple: [ParamValue]; params: {'student_id': ParamValue} }
   }
   PUT: {
     'students.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }

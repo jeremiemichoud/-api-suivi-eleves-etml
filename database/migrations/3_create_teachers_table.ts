@@ -9,6 +9,14 @@ export default class extends BaseSchema {
       table.string('firstname').notNullable()
       table.string('name').notNullable()
       table.string('email').notNullable()
+      table
+        .integer('user_id')
+        .unsigned()
+        .references('id')
+        .inTable('users')
+        .onDelete('CASCADE')
+        .unique() // Un enseignant est lié à un seul utilisateur
+        .nullable()
       table.timestamp('created_at')
       table.timestamp('updated_at')
     })

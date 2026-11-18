@@ -8,6 +8,58 @@ import type { routes } from './index.ts'
 export type ParamValue = string | number | bigint | boolean
 
 export interface Registry {
+  'auth.new_account.store': {
+    methods: ["POST"]
+    pattern: '/api/v1/auth/signup'
+    types: {
+      body: ExtractBody<InferInput<(typeof import('#validators/user').signupValidator)>>
+      paramsTuple: []
+      params: {}
+      query: ExtractQuery<InferInput<(typeof import('#validators/user').signupValidator)>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/new_account_controller').default['store']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/new_account_controller').default['store']>>> | { status: 422; response: { errors: SimpleError[] } }
+      rawResponse: ExtractRawResponse<Awaited<ReturnType<import('#controllers/new_account_controller').default['store']>>> | { status: 422; response: { errors: SimpleError[] } }
+    }
+  }
+  'auth.access_tokens.store': {
+    methods: ["POST"]
+    pattern: '/api/v1/auth/login'
+    types: {
+      body: ExtractBody<InferInput<(typeof import('#validators/user').loginValidator)>>
+      paramsTuple: []
+      params: {}
+      query: ExtractQuery<InferInput<(typeof import('#validators/user').loginValidator)>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/access_tokens_controller').default['store']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/access_tokens_controller').default['store']>>> | { status: 422; response: { errors: SimpleError[] } }
+      rawResponse: ExtractRawResponse<Awaited<ReturnType<import('#controllers/access_tokens_controller').default['store']>>> | { status: 422; response: { errors: SimpleError[] } }
+    }
+  }
+  'profile.profile.show': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/v1/account/profile'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/profile_controller').default['show']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/profile_controller').default['show']>>>
+      rawResponse: ExtractRawResponse<Awaited<ReturnType<import('#controllers/profile_controller').default['show']>>>
+    }
+  }
+  'profile.access_tokens.destroy': {
+    methods: ["POST"]
+    pattern: '/api/v1/account/logout'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/access_tokens_controller').default['destroy']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/access_tokens_controller').default['destroy']>>>
+      rawResponse: ExtractRawResponse<Awaited<ReturnType<import('#controllers/access_tokens_controller').default['destroy']>>>
+    }
+  }
   'students.index': {
     methods: ["GET","HEAD"]
     pattern: '/students'
@@ -220,13 +272,13 @@ export interface Registry {
     methods: ["POST"]
     pattern: '/students/:student_id/comments'
     types: {
-      body: {}
+      body: ExtractBody<InferInput<(typeof import('#validators/comment').commentValidator)>>
       paramsTuple: [ParamValue]
       params: { student_id: ParamValue }
-      query: {}
+      query: ExtractQuery<InferInput<(typeof import('#validators/comment').commentValidator)>>
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/comments_controller').default['store']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/comments_controller').default['store']>>>
-      rawResponse: ExtractRawResponse<Awaited<ReturnType<import('#controllers/comments_controller').default['store']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/comments_controller').default['store']>>> | { status: 422; response: { errors: SimpleError[] } }
+      rawResponse: ExtractRawResponse<Awaited<ReturnType<import('#controllers/comments_controller').default['store']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
   'students.comments.show': {
@@ -246,13 +298,13 @@ export interface Registry {
     methods: ["PUT","PATCH"]
     pattern: '/students/:student_id/comments/:id'
     types: {
-      body: {}
+      body: ExtractBody<InferInput<(typeof import('#validators/comment').commentValidator)>>
       paramsTuple: [ParamValue, ParamValue]
       params: { student_id: ParamValue; id: ParamValue }
-      query: {}
+      query: ExtractQuery<InferInput<(typeof import('#validators/comment').commentValidator)>>
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/comments_controller').default['update']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/comments_controller').default['update']>>>
-      rawResponse: ExtractRawResponse<Awaited<ReturnType<import('#controllers/comments_controller').default['update']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/comments_controller').default['update']>>> | { status: 422; response: { errors: SimpleError[] } }
+      rawResponse: ExtractRawResponse<Awaited<ReturnType<import('#controllers/comments_controller').default['update']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
   'students.comments.destroy': {

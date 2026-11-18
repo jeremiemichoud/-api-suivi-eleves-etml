@@ -1,0 +1,4 @@
+name: api_suivi_eleves
+variables:
+  - name: token
+    value: oat_Mg.TEtjTTJWTUlXUC1jOWdzSXY0OXROcEFtWE5iUVNXQ1JtX1lSSkxuVjExODI1MzQ3MQ
