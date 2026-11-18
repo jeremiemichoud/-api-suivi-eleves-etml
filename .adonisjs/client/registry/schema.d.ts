@@ -203,6 +203,71 @@ export interface Registry {
       rawResponse: ExtractRawResponse<Awaited<ReturnType<import('#controllers/class_groups_controller').default['destroy']>>>
     }
   }
+  'students.comments.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/students/:student_id/comments'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { student_id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/comments_controller').default['index']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/comments_controller').default['index']>>>
+      rawResponse: ExtractRawResponse<Awaited<ReturnType<import('#controllers/comments_controller').default['index']>>>
+    }
+  }
+  'students.comments.store': {
+    methods: ["POST"]
+    pattern: '/students/:student_id/comments'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { student_id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/comments_controller').default['store']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/comments_controller').default['store']>>>
+      rawResponse: ExtractRawResponse<Awaited<ReturnType<import('#controllers/comments_controller').default['store']>>>
+    }
+  }
+  'students.comments.show': {
+    methods: ["GET","HEAD"]
+    pattern: '/students/:student_id/comments/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue, ParamValue]
+      params: { student_id: ParamValue; id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/comments_controller').default['show']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/comments_controller').default['show']>>>
+      rawResponse: ExtractRawResponse<Awaited<ReturnType<import('#controllers/comments_controller').default['show']>>>
+    }
+  }
+  'students.comments.update': {
+    methods: ["PUT","PATCH"]
+    pattern: '/students/:student_id/comments/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue, ParamValue]
+      params: { student_id: ParamValue; id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/comments_controller').default['update']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/comments_controller').default['update']>>>
+      rawResponse: ExtractRawResponse<Awaited<ReturnType<import('#controllers/comments_controller').default['update']>>>
+    }
+  }
+  'students.comments.destroy': {
+    methods: ["DELETE"]
+    pattern: '/students/:student_id/comments/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue, ParamValue]
+      params: { student_id: ParamValue; id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/comments_controller').default['destroy']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/comments_controller').default['destroy']>>>
+      rawResponse: ExtractRawResponse<Awaited<ReturnType<import('#controllers/comments_controller').default['destroy']>>>
+    }
+  }
 }
 
 export namespace Route {

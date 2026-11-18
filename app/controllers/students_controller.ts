@@ -7,16 +7,16 @@ export default class StudentsController {
    * Display a list of resource
    */
   async index({}: HttpContext) {
-    return await Student.query().orderBy('name').orderBy('firstname')
+    return await Student.query().preload('classGroup').orderBy('name').orderBy('firstname')
   }
 
   /**
    * Handle form submission for the create action
    */
   async store({ request, response }: HttpContext) {
-    const { name, firstname } = await request.validateUsing(studentValidator)
+    const { name, firstname, classGroupId } = await request.validateUsing(studentValidator)
 
-    const student = request.only([name, firstname])
+    const student = await Student.create({ name, firstname, classGroupId })
 
     return response.created(student)
   }
@@ -25,7 +25,7 @@ export default class StudentsController {
    * Show individual record
    */
   async show({ params, response }: HttpContext) {
-    const student = await Student.findOrFail(params.id)
+    const student = await Student.query().preload('classGroup').where('id', params.id).firstOrFail()
     return response.ok(student)
   }
 
