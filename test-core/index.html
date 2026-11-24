@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Test CORS - Adonis API</title>
+  </head>
+  <body>
+    <h1>Démo CORS : Appel à l'API Adonis</h1>
+    <button onclick="testCORS()">Tester l'appel à /test</button>
+    <pre id="result"></pre>
+    <script>
+      async function testCORS() {
+        const resultBox = document.getElementById('result')
+        try {
+          const res = await fetch('http://localhost:3333/test', {
+            method: 'GET',
+          })
+          const text = await res.text()
+          resultBox.textContent = `✅ Succès : ${text}`
+        } catch (err) {
+          resultBox.textContent = `❌ Erreur CORS : ${err.message}`
+          console.error(err)
+        }
+      }
+    </script>
+  </body>
+</html>
